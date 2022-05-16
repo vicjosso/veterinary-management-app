@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+<<<<<<< HEAD
+      <Diagram DiagramId="ffbb4dfac78649a7b222191896b6ada8" Name="Diagram1" ZoomLevel="65">
+        <EntityTypeShape EntityType="BD_pt4_S4A_eq1Model.soigner" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_pt4_S4A_eq1Model.soins" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_pt4_S4A_eq1Model.type" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        
+        
+=======
+      <Diagram DiagramId="750ac45a599e4a56a6c8dccf324bd98a" Name="Diagram1">
+        <EntityTypeShape EntityType="BD_pt4_S4A_eq1Model.animal" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_pt4_S4A_eq1Model.client" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_pt4_S4A_eq1Model.facture_produit" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_pt4_S4A_eq1Model.journee" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_pt4_S4A_eq1Model.log" Width="1.5" PointX="11" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_pt4_S4A_eq1Model.maladie" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_pt4_S4A_eq1Model.maladie_liee" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_pt4_S4A_eq1Model.ordonnance" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_pt4_S4A_eq1Model.patient" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_pt4_S4A_eq1Model.produit" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_pt4_S4A_eq1Model.produit_vendu" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_pt4_S4A_eq1Model.rendez_vous" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_pt4_S4A_eq1Model.salarie" Width="1.5" PointX="8.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_pt4_S4A_eq1Model.traitement" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_pt4_S4A_eq1Model.travaille" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="BD_pt4_S4A_eq1Model.FK_client_animal" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_pt4_S4A_eq1Model.FK_client_facture_produit" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_pt4_S4A_eq1Model.FK_log_salarie" ManuallyRouted="false" />
+>>>>>>> gestion_stocks_BE
+        <AssociationConnector Association="BD_pt4_S4A_eq1Model.FK_animal_maladie_liee" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_pt4_S4A_eq1Model.FK_animal_ordonnance" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_pt4_S4A_eq1Model.FK_rdv_ordonnance" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_pt4_S4A_eq1Model.FK_animal_patient" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_pt4_S4A_eq1Model.FK_ordonnance_produit" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_pt4_S4A_eq1Model.FK_facture_produit_vendu" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_pt4_S4A_eq1Model.FK_client_rendez_vous" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_pt4_S4A_eq1Model.FK_journee_rendez_vous" ManuallyRouted="false" />
+<<<<<<< HEAD
+        <AssociationConnector Association="BD_pt4_S4A_eq1Model.FK_type_rendez_vous" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_pt4_S4A_eq1Model.FK_maladie_soigner" ManuallyRouted="false" />
+=======
+>>>>>>> gestion_stocks_BE
+        <AssociationConnector Association="BD_pt4_S4A_eq1Model.FK_maladie_traitement" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_pt4_S4A_eq1Model.FK_produit_traitement" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_pt4_S4A_eq1Model.FK_salarie_travaille" ManuallyRouted="false" />
+      </Diagram>
+        <EntityTypeShape EntityType="BD_pt4_S4A_eq1Model.animal" Width="1.5" PointX="3" PointY="5.375" />
+        <EntityTypeShape EntityType="BD_pt4_S4A_eq1Model.client" Width="1.5" PointX="0.75" PointY="4.25" />
+        <EntityTypeShape EntityType="BD_pt4_S4A_eq1Model.facture_produit" Width="1.5" PointX="3" PointY="1.25" />
+        <EntityTypeShape EntityType="BD_pt4_S4A_eq1Model.maladie" Width="1.5" PointX="7.5" PointY="1" />
+        <EntityTypeShape EntityType="BD_pt4_S4A_eq1Model.maladie_liee" Width="1.5" PointX="5.25" PointY="8" />
+        <EntityTypeShape EntityType="BD_pt4_S4A_eq1Model.ordonnance" Width="1.5" PointX="5.25" PointY="4.75" />
+        <EntityTypeShape EntityType="BD_pt4_S4A_eq1Model.patient" Width="1.5" PointX="7.75" PointY="8.75" />
+        <EntityTypeShape EntityType="BD_pt4_S4A_eq1Model.produit_vendu" Width="1.5" PointX="5.25" PointY="1.5" />
+        <EntityTypeShape EntityType="BD_pt4_S4A_eq1Model.salarie" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_pt4_S4A_eq1Model.traitement" Width="1.5" PointX="9.75" PointY="4.875" />
+        <AssociationConnector Association="BD_pt4_S4A_eq1Model.FK_animal_maladie_liee" />
+        <AssociationConnector Association="BD_pt4_S4A_eq1Model.FK_animal_ordonnance" />
+        <AssociationConnector Association="BD_pt4_S4A_eq1Model.FK_client_animal" />
+        <AssociationConnector Association="BD_pt4_S4A_eq1Model.FK_client_facture_produit" />
+        <AssociationConnector Association="BD_pt4_S4A_eq1Model.FK_facture_produit_vendu" />
+        <AssociationConnector Association="BD_pt4_S4A_eq1Model.FK_maladie_traitement" />
+        <AssociationConnector Association="BD_pt4_S4A_eq1Model.FK_animal_patient" />
+        <EntityTypeShape EntityType="BD_pt4_S4A_eq1Model.produit" Width="1.5" PointX="7.5" PointY="4.375" />
+        <AssociationConnector Association="BD_pt4_S4A_eq1Model.FK_ordonnance_produit" />
+        <AssociationConnector Association="BD_pt4_S4A_eq1Model.FK_produit_traitement" />
+        <EntityTypeShape EntityType="BD_pt4_S4A_eq1Model.rendez_vous" Width="1.5" PointX="5.8316104122584731" PointY="21.818075771358831" />
+        <AssociationConnector Association="BD_pt4_S4A_eq1Model.FK_rendez_vous_client" />
+        <AssociationConnector Association="BD_pt4_S4A_eq1Model.FK_rdv_ordonnance" />
+        <AssociationConnector Association="BD_pt4_S4A_eq1Model.FK_animal_patient1" />
+        </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,885 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BD_pt4_S4A_eq1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="animal">
+          <Key>
+            <PropertyRef Name="idAnimal" />
+          </Key>
+          <Property Name="idAnimal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idClient" Type="int" Nullable="false" />
+          <Property Name="nomEspece" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="nomRace" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="nomAnimal" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="dateNaissance" Type="date" />
+          <Property Name="taille" Type="int" Nullable="false" />
+          <Property Name="poids" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="client">
+          <Key>
+            <PropertyRef Name="idClient" />
+          </Key>
+          <Property Name="idClient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nomClient" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="prenomClient" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="numeroClient" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="facture_produit">
+          <Key>
+            <PropertyRef Name="idFacture" />
+          </Key>
+          <Property Name="idFacture" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idClient" Type="int" Nullable="false" />
+          <Property Name="numFacture" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="montant" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="log">
+          <Key>
+            <PropertyRef Name="idLog" />
+          </Key>
+          <Property Name="idLog" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idSalarie" Type="int" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="action" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="objet_action" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="idObjet" Type="int" />
+        </EntityType>
+        <EntityType Name="maladie">
+          <Key>
+            <PropertyRef Name="idMaladie" />
+          </Key>
+          <Property Name="idMaladie" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nomMaladie " Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="maladie_liee">
+          <Key>
+            <PropertyRef Name="idMaladie" />
+          </Key>
+          <Property Name="idMaladie" Type="int" Nullable="false" />
+          <Property Name="idAnimal " Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ordonnance">
+          <Key>
+            <PropertyRef Name="idOrdonnance" />
+          </Key>
+          <Property Name="idOrdonnance" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idAnimal" Type="int" Nullable="false" />
+          <Property Name="idRdv " Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="patient">
+          <Key>
+            <PropertyRef Name="idRdv" />
+          </Key>
+          <Property Name="idRdv" Type="int" Nullable="false" />
+          <Property Name="idAnimal" Type="int" Nullable="false" />
+          <Property Name="montant " Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="produit">
+          <Key>
+            <PropertyRef Name="idProduit" />
+          </Key>
+          <Property Name="idProduit" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nomProduit" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="255" />
+          <Property Name="quantiteStock" Type="int" Nullable="false" />
+          <Property Name="prixAchat" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="prixVenteClient" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="idOrdonnance" Type="int" />
+          <Property Name="imageProduit" Type="image" />
+        </EntityType>
+        <EntityType Name="produit_vendu">
+          <Key>
+            <PropertyRef Name="idProduit" />
+          </Key>
+          <Property Name="idProduit" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idFacture" Type="int" Nullable="false" />
+          <Property Name="quantite" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="rendez_vous">
+          <Key>
+            <PropertyRef Name="idRDV" />
+          </Key>
+          <Property Name="idRDV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idClient" Type="int" Nullable="false" />
+          <Property Name="dateDebut" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="dateFin" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="raison" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="salarie">
+          <Key>
+            <PropertyRef Name="idCompte" />
+          </Key>
+          <Property Name="idCompte" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="login" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="mdp" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="mail" Type="varchar" MaxLength="180" Nullable="false" />
+          <Property Name="adresse" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="telephone" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="date_naissance " Type="date" />
+          <Property Name="admin" Type="bit" />
+        </EntityType>
+        <EntityType Name="traitement">
+          <Key>
+            <PropertyRef Name="idTraitement" />
+          </Key>
+          <Property Name="idTraitement" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idMaladie" Type="int" Nullable="false" />
+          <Property Name="idProduit " Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_animal_maladie_liee">
+          <End Role="animal" Type="Self.animal" Multiplicity="1" />
+          <End Role="maladie_liee" Type="Self.maladie_liee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="animal">
+              <PropertyRef Name="idAnimal" />
+            </Principal>
+            <Dependent Role="maladie_liee">
+              <PropertyRef Name="idAnimal " />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_animal_ordonnance">
+          <End Role="animal" Type="Self.animal" Multiplicity="1" />
+          <End Role="ordonnance" Type="Self.ordonnance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="animal">
+              <PropertyRef Name="idAnimal" />
+            </Principal>
+            <Dependent Role="ordonnance">
+              <PropertyRef Name="idAnimal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_animal_patient">
+          <End Role="patient" Type="Self.patient" Multiplicity="1" />
+          <End Role="patient1" Type="Self.patient" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="patient">
+              <PropertyRef Name="idRdv" />
+            </Principal>
+            <Dependent Role="patient1">
+              <PropertyRef Name="idRdv" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_client_animal">
+          <End Role="client" Type="Self.client" Multiplicity="1" />
+          <End Role="animal" Type="Self.animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="client">
+              <PropertyRef Name="idClient" />
+            </Principal>
+            <Dependent Role="animal">
+              <PropertyRef Name="idClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_client_facture_produit">
+          <End Role="client" Type="Self.client" Multiplicity="1" />
+          <End Role="facture_produit" Type="Self.facture_produit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="client">
+              <PropertyRef Name="idClient" />
+            </Principal>
+            <Dependent Role="facture_produit">
+              <PropertyRef Name="idClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_facture_produit_vendu">
+          <End Role="facture_produit" Type="Self.facture_produit" Multiplicity="1" />
+          <End Role="produit_vendu" Type="Self.produit_vendu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="facture_produit">
+              <PropertyRef Name="idFacture" />
+            </Principal>
+            <Dependent Role="produit_vendu">
+              <PropertyRef Name="idFacture" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_log_salarie">
+          <End Role="salarie" Type="Self.salarie" Multiplicity="1" />
+          <End Role="log" Type="Self.log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="salarie">
+              <PropertyRef Name="idCompte" />
+            </Principal>
+            <Dependent Role="log">
+              <PropertyRef Name="idSalarie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_maladie_traitement">
+          <End Role="maladie" Type="Self.maladie" Multiplicity="1" />
+          <End Role="traitement" Type="Self.traitement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="maladie">
+              <PropertyRef Name="idMaladie" />
+            </Principal>
+            <Dependent Role="traitement">
+              <PropertyRef Name="idMaladie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ordonnance_produit">
+          <End Role="ordonnance" Type="Self.ordonnance" Multiplicity="0..1" />
+          <End Role="produit" Type="Self.produit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ordonnance">
+              <PropertyRef Name="idOrdonnance" />
+            </Principal>
+            <Dependent Role="produit">
+              <PropertyRef Name="idOrdonnance" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_produit_traitement">
+          <End Role="produit" Type="Self.produit" Multiplicity="1" />
+          <End Role="traitement" Type="Self.traitement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="produit">
+              <PropertyRef Name="idProduit" />
+            </Principal>
+            <Dependent Role="traitement">
+              <PropertyRef Name="idProduit " />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rdv_ordonnance">
+          <End Role="rendez_vous" Type="Self.rendez_vous" Multiplicity="1" />
+          <End Role="ordonnance" Type="Self.ordonnance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rendez_vous">
+              <PropertyRef Name="idRDV" />
+            </Principal>
+            <Dependent Role="ordonnance">
+              <PropertyRef Name="idRdv " />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rendez_vous_client">
+          <End Role="client" Type="Self.client" Multiplicity="1" />
+          <End Role="rendez_vous" Type="Self.rendez_vous" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="client">
+              <PropertyRef Name="idClient" />
+            </Principal>
+            <Dependent Role="rendez_vous">
+              <PropertyRef Name="idClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BD_pt4_S4A_eq1ModelStoreContainer">
+          <EntitySet Name="animal" EntityType="Self.animal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="client" EntityType="Self.client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="facture_produit" EntityType="Self.facture_produit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="log" EntityType="Self.log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="maladie" EntityType="Self.maladie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="maladie_liee" EntityType="Self.maladie_liee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ordonnance" EntityType="Self.ordonnance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="patient" EntityType="Self.patient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="produit" EntityType="Self.produit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="produit_vendu" EntityType="Self.produit_vendu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rendez_vous" EntityType="Self.rendez_vous" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="salarie" EntityType="Self.salarie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="traitement" EntityType="Self.traitement" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_animal_maladie_liee" Association="Self.FK_animal_maladie_liee">
+            <End Role="animal" EntitySet="animal" />
+            <End Role="maladie_liee" EntitySet="maladie_liee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_animal_ordonnance" Association="Self.FK_animal_ordonnance">
+            <End Role="animal" EntitySet="animal" />
+            <End Role="ordonnance" EntitySet="ordonnance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_animal_patient" Association="Self.FK_animal_patient">
+            <End Role="patient" EntitySet="patient" />
+            <End Role="patient1" EntitySet="patient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_client_animal" Association="Self.FK_client_animal">
+            <End Role="client" EntitySet="client" />
+            <End Role="animal" EntitySet="animal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_client_facture_produit" Association="Self.FK_client_facture_produit">
+            <End Role="client" EntitySet="client" />
+            <End Role="facture_produit" EntitySet="facture_produit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_facture_produit_vendu" Association="Self.FK_facture_produit_vendu">
+            <End Role="facture_produit" EntitySet="facture_produit" />
+            <End Role="produit_vendu" EntitySet="produit_vendu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_log_salarie" Association="Self.FK_log_salarie">
+            <End Role="salarie" EntitySet="salarie" />
+            <End Role="log" EntitySet="log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_maladie_traitement" Association="Self.FK_maladie_traitement">
+            <End Role="maladie" EntitySet="maladie" />
+            <End Role="traitement" EntitySet="traitement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ordonnance_produit" Association="Self.FK_ordonnance_produit">
+            <End Role="ordonnance" EntitySet="ordonnance" />
+            <End Role="produit" EntitySet="produit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_produit_traitement" Association="Self.FK_produit_traitement">
+            <End Role="produit" EntitySet="produit" />
+            <End Role="traitement" EntitySet="traitement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rdv_ordonnance" Association="Self.FK_rdv_ordonnance">
+            <End Role="rendez_vous" EntitySet="rendez_vous" />
+            <End Role="ordonnance" EntitySet="ordonnance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rendez_vous_client" Association="Self.FK_rendez_vous_client">
+            <End Role="client" EntitySet="client" />
+            <End Role="rendez_vous" EntitySet="rendez_vous" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BD_pt4_S4A_eq1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="log">
+          <Key>
+            <PropertyRef Name="idLog" />
+          </Key>
+          <Property Name="idLog" Type="Int32" Nullable="false" />
+          <Property Name="idSalarie" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="action" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="objet_action" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idObjet" Type="Int32" />
+          <NavigationProperty Name="salarie" Relationship="BD_pt4_S4A_eq1Model.FK_log_salarie" FromRole="log" ToRole="salarie" />
+        </EntityType>
+        <EntityContainer Name="BD_pt4_S4A_eq1Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="log" EntityType="Self.log" />
+          <EntitySet Name="animal" EntityType="BD_pt4_S4A_eq1Model.animal" />
+          <EntitySet Name="client" EntityType="BD_pt4_S4A_eq1Model.client" />
+          <EntitySet Name="facture_produit" EntityType="BD_pt4_S4A_eq1Model.facture_produit" />
+          <EntitySet Name="maladie" EntityType="BD_pt4_S4A_eq1Model.maladie" />
+          <EntitySet Name="maladie_liee" EntityType="BD_pt4_S4A_eq1Model.maladie_liee" />
+          <EntitySet Name="ordonnance" EntityType="BD_pt4_S4A_eq1Model.ordonnance" />
+          <EntitySet Name="patient" EntityType="BD_pt4_S4A_eq1Model.patient" />
+          <EntitySet Name="produit_vendu" EntityType="BD_pt4_S4A_eq1Model.produit_vendu" />
+          <EntitySet Name="salarie" EntityType="BD_pt4_S4A_eq1Model.salarie" />
+          <EntitySet Name="traitement" EntityType="BD_pt4_S4A_eq1Model.traitement" />
+          <AssociationSet Name="FK_animal_maladie_liee" Association="BD_pt4_S4A_eq1Model.FK_animal_maladie_liee">
+            <End Role="animal" EntitySet="animal" />
+            <End Role="maladie_liee" EntitySet="maladie_liee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_animal_ordonnance" Association="BD_pt4_S4A_eq1Model.FK_animal_ordonnance">
+            <End Role="animal" EntitySet="animal" />
+            <End Role="ordonnance" EntitySet="ordonnance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_client_animal" Association="BD_pt4_S4A_eq1Model.FK_client_animal">
+            <End Role="client" EntitySet="client" />
+            <End Role="animal" EntitySet="animal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_client_facture_produit" Association="BD_pt4_S4A_eq1Model.FK_client_facture_produit">
+            <End Role="client" EntitySet="client" />
+            <End Role="facture_produit" EntitySet="facture_produit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_facture_produit_vendu" Association="BD_pt4_S4A_eq1Model.FK_facture_produit_vendu">
+            <End Role="facture_produit" EntitySet="facture_produit" />
+            <End Role="produit_vendu" EntitySet="produit_vendu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_log_salarie" Association="BD_pt4_S4A_eq1Model.FK_log_salarie">
+            <End Role="salarie" EntitySet="salarie" />
+            <End Role="log" EntitySet="log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_maladie_traitement" Association="BD_pt4_S4A_eq1Model.FK_maladie_traitement">
+            <End Role="maladie" EntitySet="maladie" />
+            <End Role="traitement" EntitySet="traitement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_animal_patient" Association="BD_pt4_S4A_eq1Model.FK_animal_patient">
+            <End Role="patient" EntitySet="patient" />
+            <End Role="patient1" EntitySet="patient" />
+          </AssociationSet>
+          <EntitySet Name="produit" EntityType="BD_pt4_S4A_eq1Model.produit" />
+          <AssociationSet Name="FK_ordonnance_produit" Association="BD_pt4_S4A_eq1Model.FK_ordonnance_produit">
+            <End Role="ordonnance" EntitySet="ordonnance" />
+            <End Role="produit" EntitySet="produit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_produit_traitement" Association="BD_pt4_S4A_eq1Model.FK_produit_traitement">
+            <End Role="produit" EntitySet="produit" />
+            <End Role="traitement" EntitySet="traitement" />
+          </AssociationSet>
+          <EntitySet Name="rendez_vous" EntityType="BD_pt4_S4A_eq1Model.rendez_vous" />
+          <AssociationSet Name="FK_rendez_vous_client" Association="BD_pt4_S4A_eq1Model.FK_rendez_vous_client">
+            <End Role="client" EntitySet="client" />
+            <End Role="rendez_vous" EntitySet="rendez_vous" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rdv_ordonnance" Association="BD_pt4_S4A_eq1Model.FK_rdv_ordonnance">
+            <End Role="rendez_vous" EntitySet="rendez_vous" />
+            <End Role="ordonnance" EntitySet="ordonnance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_animal_patient1" Association="BD_pt4_S4A_eq1Model.FK_animal_patient1">
+            <End Role="patient" EntitySet="patient" />
+            <End Role="patient1" EntitySet="patient" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="animal">
+          <Key>
+            <PropertyRef Name="idAnimal" />
+          </Key>
+          <Property Name="idAnimal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idClient" Type="Int32" Nullable="false" />
+          <Property Name="nomEspece" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="nomRace" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="nomAnimal" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="dateNaissance" Type="DateTime" Precision="0" />
+          <Property Name="taille" Type="Int32" Nullable="false" />
+          <Property Name="poids" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="maladie_liee" Relationship="BD_pt4_S4A_eq1Model.FK_animal_maladie_liee" FromRole="animal" ToRole="maladie_liee" />
+          <NavigationProperty Name="ordonnance" Relationship="BD_pt4_S4A_eq1Model.FK_animal_ordonnance" FromRole="animal" ToRole="ordonnance" />
+          <NavigationProperty Name="client" Relationship="BD_pt4_S4A_eq1Model.FK_client_animal" FromRole="animal" ToRole="client" />
+        </EntityType>
+        <EntityType Name="client">
+          <Key>
+            <PropertyRef Name="idClient" />
+          </Key>
+          <Property Name="idClient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomClient" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="prenomClient" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="numeroClient" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="animal" Relationship="BD_pt4_S4A_eq1Model.FK_client_animal" FromRole="client" ToRole="animal" />
+          <NavigationProperty Name="facture_produit" Relationship="BD_pt4_S4A_eq1Model.FK_client_facture_produit" FromRole="client" ToRole="facture_produit" />
+          <NavigationProperty Name="rendez_vous" Relationship="BD_pt4_S4A_eq1Model.FK_rendez_vous_client" FromRole="client" ToRole="rendez_vous" />
+        </EntityType>
+        <EntityType Name="facture_produit">
+          <Key>
+            <PropertyRef Name="idFacture" />
+          </Key>
+          <Property Name="idFacture" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idClient" Type="Int32" Nullable="false" />
+          <Property Name="numFacture" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="montant" Type="Double" Nullable="false" />
+          <NavigationProperty Name="client" Relationship="BD_pt4_S4A_eq1Model.FK_client_facture_produit" FromRole="facture_produit" ToRole="client" />
+          <NavigationProperty Name="produit_vendu" Relationship="BD_pt4_S4A_eq1Model.FK_facture_produit_vendu" FromRole="facture_produit" ToRole="produit_vendu" />
+        </EntityType>
+        <EntityType Name="maladie">
+          <Key>
+            <PropertyRef Name="idMaladie" />
+          </Key>
+          <Property Name="idMaladie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomMaladie_" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="traitement" Relationship="BD_pt4_S4A_eq1Model.FK_maladie_traitement" FromRole="maladie" ToRole="traitement" />
+        </EntityType>
+        <EntityType Name="maladie_liee">
+          <Key>
+            <PropertyRef Name="idMaladie" />
+          </Key>
+          <Property Name="idMaladie" Type="Int32" Nullable="false" />
+          <Property Name="idAnimal_" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="animal" Relationship="BD_pt4_S4A_eq1Model.FK_animal_maladie_liee" FromRole="maladie_liee" ToRole="animal" />
+        </EntityType>
+        <EntityType Name="ordonnance">
+          <Key>
+            <PropertyRef Name="idOrdonnance" />
+          </Key>
+          <Property Name="idOrdonnance" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idAnimal" Type="Int32" Nullable="false" />
+          <Property Name="idRdv_" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="animal" Relationship="BD_pt4_S4A_eq1Model.FK_animal_ordonnance" FromRole="ordonnance" ToRole="animal" />
+          <NavigationProperty Name="produit" Relationship="BD_pt4_S4A_eq1Model.FK_ordonnance_produit" FromRole="ordonnance" ToRole="produit" />
+          <NavigationProperty Name="rendez_vous" Relationship="BD_pt4_S4A_eq1Model.FK_rdv_ordonnance" FromRole="ordonnance" ToRole="rendez_vous" />
+        </EntityType>
+        <EntityType Name="patient">
+          <Key>
+            <PropertyRef Name="idRdv" />
+          </Key>
+          <Property Name="idRdv" Type="Int32" Nullable="false" />
+          <Property Name="idAnimal" Type="Int32" Nullable="false" />
+          <Property Name="montant_" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="patient1" Relationship="BD_pt4_S4A_eq1Model.FK_animal_patient" FromRole="patient" ToRole="patient1" />
+          <NavigationProperty Name="patient2" Relationship="BD_pt4_S4A_eq1Model.FK_animal_patient" FromRole="patient1" ToRole="patient" />
+          <NavigationProperty Name="patient11" Relationship="BD_pt4_S4A_eq1Model.FK_animal_patient1" FromRole="patient" ToRole="patient1" />
+          <NavigationProperty Name="patient21" Relationship="BD_pt4_S4A_eq1Model.FK_animal_patient1" FromRole="patient1" ToRole="patient" />
+        </EntityType>
+        <EntityType Name="produit_vendu">
+          <Key>
+            <PropertyRef Name="idProduit" />
+          </Key>
+          <Property Name="idProduit" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idFacture" Type="Int32" Nullable="false" />
+          <Property Name="quantite" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="facture_produit" Relationship="BD_pt4_S4A_eq1Model.FK_facture_produit_vendu" FromRole="produit_vendu" ToRole="facture_produit" />
+        </EntityType>
+        <EntityType Name="salarie">
+          <Key>
+            <PropertyRef Name="idCompte" />
+          </Key>
+          <Property Name="idCompte" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="mdp" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="mail" Type="String" Nullable="false" MaxLength="180" FixedLength="false" Unicode="false" />
+          <Property Name="adresse" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="telephone" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="date_naissance_" Type="DateTime" Precision="0" />
+          <Property Name="admin" Type="Boolean" />
+          <NavigationProperty Name="log" Relationship="BD_pt4_S4A_eq1Model.FK_log_salarie" FromRole="salarie" ToRole="log" />
+        </EntityType>
+        <EntityType Name="traitement">
+          <Key>
+            <PropertyRef Name="idTraitement" />
+          </Key>
+          <Property Name="idTraitement" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idMaladie" Type="Int32" Nullable="false" />
+          <Property Name="idProduit_" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="maladie" Relationship="BD_pt4_S4A_eq1Model.FK_maladie_traitement" FromRole="traitement" ToRole="maladie" />
+          <NavigationProperty Name="produit" Relationship="BD_pt4_S4A_eq1Model.FK_produit_traitement" FromRole="traitement" ToRole="produit" />
+        </EntityType>
+        <Association Name="FK_animal_maladie_liee">
+          <End Type="BD_pt4_S4A_eq1Model.animal" Role="animal" Multiplicity="1" />
+          <End Type="BD_pt4_S4A_eq1Model.maladie_liee" Role="maladie_liee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="animal">
+              <PropertyRef Name="idAnimal" />
+            </Principal>
+            <Dependent Role="maladie_liee">
+              <PropertyRef Name="idAnimal_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_animal_ordonnance">
+          <End Type="BD_pt4_S4A_eq1Model.animal" Role="animal" Multiplicity="1" />
+          <End Type="BD_pt4_S4A_eq1Model.ordonnance" Role="ordonnance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="animal">
+              <PropertyRef Name="idAnimal" />
+            </Principal>
+            <Dependent Role="ordonnance">
+              <PropertyRef Name="idAnimal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_client_animal">
+          <End Type="BD_pt4_S4A_eq1Model.client" Role="client" Multiplicity="1" />
+          <End Type="BD_pt4_S4A_eq1Model.animal" Role="animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="client">
+              <PropertyRef Name="idClient" />
+            </Principal>
+            <Dependent Role="animal">
+              <PropertyRef Name="idClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_client_facture_produit">
+          <End Type="BD_pt4_S4A_eq1Model.client" Role="client" Multiplicity="1" />
+          <End Type="BD_pt4_S4A_eq1Model.facture_produit" Role="facture_produit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="client">
+              <PropertyRef Name="idClient" />
+            </Principal>
+            <Dependent Role="facture_produit">
+              <PropertyRef Name="idClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_facture_produit_vendu">
+          <End Type="BD_pt4_S4A_eq1Model.facture_produit" Role="facture_produit" Multiplicity="1" />
+          <End Type="BD_pt4_S4A_eq1Model.produit_vendu" Role="produit_vendu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="facture_produit">
+              <PropertyRef Name="idFacture" />
+            </Principal>
+            <Dependent Role="produit_vendu">
+              <PropertyRef Name="idFacture" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_log_salarie">
+          <End Type="BD_pt4_S4A_eq1Model.salarie" Role="salarie" Multiplicity="1" />
+          <End Type="BD_pt4_S4A_eq1Model.log" Role="log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="salarie">
+              <PropertyRef Name="idCompte" />
+            </Principal>
+            <Dependent Role="log">
+              <PropertyRef Name="idSalarie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_maladie_traitement">
+          <End Type="BD_pt4_S4A_eq1Model.maladie" Role="maladie" Multiplicity="1" />
+          <End Type="BD_pt4_S4A_eq1Model.traitement" Role="traitement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="maladie">
+              <PropertyRef Name="idMaladie" />
+            </Principal>
+            <Dependent Role="traitement">
+              <PropertyRef Name="idMaladie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_animal_patient">
+          <End Type="BD_pt4_S4A_eq1Model.patient" Role="patient" Multiplicity="1" />
+          <End Type="BD_pt4_S4A_eq1Model.patient" Role="patient1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="patient">
+              <PropertyRef Name="idRdv" />
+            </Principal>
+            <Dependent Role="patient1">
+              <PropertyRef Name="idAnimal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="produit">
+          <Key>
+            <PropertyRef Name="idProduit" />
+          </Key>
+          <Property Name="idProduit" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomProduit" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="quantiteStock" Type="Int32" Nullable="false" />
+          <Property Name="prixAchat" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="prixVenteClient" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="idOrdonnance" Type="Int32" />
+          <Property Name="imageProduit" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="ordonnance" Relationship="BD_pt4_S4A_eq1Model.FK_ordonnance_produit" FromRole="produit" ToRole="ordonnance" />
+          <NavigationProperty Name="traitement" Relationship="BD_pt4_S4A_eq1Model.FK_produit_traitement" FromRole="produit" ToRole="traitement" />
+        </EntityType>
+        <Association Name="FK_ordonnance_produit">
+          <End Type="BD_pt4_S4A_eq1Model.ordonnance" Role="ordonnance" Multiplicity="0..1" />
+          <End Type="BD_pt4_S4A_eq1Model.produit" Role="produit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ordonnance">
+              <PropertyRef Name="idOrdonnance" />
+            </Principal>
+            <Dependent Role="produit">
+              <PropertyRef Name="idOrdonnance" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_produit_traitement">
+          <End Type="BD_pt4_S4A_eq1Model.produit" Role="produit" Multiplicity="1" />
+          <End Type="BD_pt4_S4A_eq1Model.traitement" Role="traitement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="produit">
+              <PropertyRef Name="idProduit" />
+            </Principal>
+            <Dependent Role="traitement">
+              <PropertyRef Name="idProduit_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="rendez_vous">
+          <Key>
+            <PropertyRef Name="idRDV" />
+          </Key>
+          <Property Name="idRDV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idClient" Type="Int32" Nullable="false" />
+          <Property Name="dateDebut" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="dateFin" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="raison" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="client" Relationship="BD_pt4_S4A_eq1Model.FK_rendez_vous_client" FromRole="rendez_vous" ToRole="client" />
+          <NavigationProperty Name="ordonnance" Relationship="BD_pt4_S4A_eq1Model.FK_rdv_ordonnance" FromRole="rendez_vous" ToRole="ordonnance" />
+        </EntityType>
+        <Association Name="FK_rendez_vous_client">
+          <End Type="BD_pt4_S4A_eq1Model.client" Role="client" Multiplicity="1" />
+          <End Type="BD_pt4_S4A_eq1Model.rendez_vous" Role="rendez_vous" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="client">
+              <PropertyRef Name="idClient" />
+            </Principal>
+            <Dependent Role="rendez_vous">
+              <PropertyRef Name="idClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rdv_ordonnance">
+          <End Type="BD_pt4_S4A_eq1Model.rendez_vous" Role="rendez_vous" Multiplicity="1" />
+          <End Type="BD_pt4_S4A_eq1Model.ordonnance" Role="ordonnance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rendez_vous">
+              <PropertyRef Name="idRDV" />
+            </Principal>
+            <Dependent Role="ordonnance">
+              <PropertyRef Name="idRdv_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_animal_patient1">
+          <End Type="BD_pt4_S4A_eq1Model.patient" Role="patient" Multiplicity="1" />
+          <End Type="BD_pt4_S4A_eq1Model.patient" Role="patient1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="patient">
+              <PropertyRef Name="idRdv" />
+            </Principal>
+            <Dependent Role="patient1">
+              <PropertyRef Name="idRdv" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BD_pt4_S4A_eq1ModelStoreContainer" CdmEntityContainer="BD_pt4_S4A_eq1Entities">
+          <EntitySetMapping Name="log">
+            <EntityTypeMapping TypeName="BD_pt4_S4A_eq1Model.log">
+              <MappingFragment StoreEntitySet="log">
+                <ScalarProperty Name="idLog" ColumnName="idLog" />
+                <ScalarProperty Name="idSalarie" ColumnName="idSalarie" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="action" ColumnName="action" />
+                <ScalarProperty Name="objet_action" ColumnName="objet_action" />
+                <ScalarProperty Name="idObjet" ColumnName="idObjet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="animal">
+            <EntityTypeMapping TypeName="BD_pt4_S4A_eq1Model.animal">
+              <MappingFragment StoreEntitySet="animal">
+                <ScalarProperty Name="poids" ColumnName="poids" />
+                <ScalarProperty Name="taille" ColumnName="taille" />
+                <ScalarProperty Name="dateNaissance" ColumnName="dateNaissance" />
+                <ScalarProperty Name="nomAnimal" ColumnName="nomAnimal" />
+                <ScalarProperty Name="nomRace" ColumnName="nomRace" />
+                <ScalarProperty Name="nomEspece" ColumnName="nomEspece" />
+                <ScalarProperty Name="idClient" ColumnName="idClient" />
+                <ScalarProperty Name="idAnimal" ColumnName="idAnimal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="client">
+            <EntityTypeMapping TypeName="BD_pt4_S4A_eq1Model.client">
+              <MappingFragment StoreEntitySet="client">
+                <ScalarProperty Name="numeroClient" ColumnName="numeroClient" />
+                <ScalarProperty Name="prenomClient" ColumnName="prenomClient" />
+                <ScalarProperty Name="nomClient" ColumnName="nomClient" />
+                <ScalarProperty Name="idClient" ColumnName="idClient" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="facture_produit">
+            <EntityTypeMapping TypeName="BD_pt4_S4A_eq1Model.facture_produit">
+              <MappingFragment StoreEntitySet="facture_produit">
+                <ScalarProperty Name="montant" ColumnName="montant" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="numFacture" ColumnName="numFacture" />
+                <ScalarProperty Name="idClient" ColumnName="idClient" />
+                <ScalarProperty Name="idFacture" ColumnName="idFacture" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="maladie">
+            <EntityTypeMapping TypeName="BD_pt4_S4A_eq1Model.maladie">
+              <MappingFragment StoreEntitySet="maladie">
+                <ScalarProperty Name="nomMaladie_" ColumnName="nomMaladie " />
+                <ScalarProperty Name="idMaladie" ColumnName="idMaladie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="maladie_liee">
+            <EntityTypeMapping TypeName="BD_pt4_S4A_eq1Model.maladie_liee">
+              <MappingFragment StoreEntitySet="maladie_liee">
+                <ScalarProperty Name="idAnimal_" ColumnName="idAnimal " />
+                <ScalarProperty Name="idMaladie" ColumnName="idMaladie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ordonnance">
+            <EntityTypeMapping TypeName="BD_pt4_S4A_eq1Model.ordonnance">
+              <MappingFragment StoreEntitySet="ordonnance">
+                <ScalarProperty Name="idRdv_" ColumnName="idRdv " />
+                <ScalarProperty Name="idAnimal" ColumnName="idAnimal" />
+                <ScalarProperty Name="idOrdonnance" ColumnName="idOrdonnance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="patient">
+            <EntityTypeMapping TypeName="BD_pt4_S4A_eq1Model.patient">
+              <MappingFragment StoreEntitySet="patient">
+                <ScalarProperty Name="montant_" ColumnName="montant " />
+                <ScalarProperty Name="idAnimal" ColumnName="idAnimal" />
+                <ScalarProperty Name="idRdv" ColumnName="idRdv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="produit_vendu">
+            <EntityTypeMapping TypeName="BD_pt4_S4A_eq1Model.produit_vendu">
+              <MappingFragment StoreEntitySet="produit_vendu">
+                <ScalarProperty Name="quantite" ColumnName="quantite" />
+                <ScalarProperty Name="idFacture" ColumnName="idFacture" />
+                <ScalarProperty Name="idProduit" ColumnName="idProduit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="salarie">
+            <EntityTypeMapping TypeName="BD_pt4_S4A_eq1Model.salarie">
+              <MappingFragment StoreEntitySet="salarie">
+                <ScalarProperty Name="admin" ColumnName="admin" />
+                <ScalarProperty Name="date_naissance_" ColumnName="date_naissance " />
+                <ScalarProperty Name="telephone" ColumnName="telephone" />
+                <ScalarProperty Name="adresse" ColumnName="adresse" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="mdp" ColumnName="mdp" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="idCompte" ColumnName="idCompte" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="traitement">
+            <EntityTypeMapping TypeName="BD_pt4_S4A_eq1Model.traitement">
+              <MappingFragment StoreEntitySet="traitement">
+                <ScalarProperty Name="idProduit_" ColumnName="idProduit " />
+                <ScalarProperty Name="idMaladie" ColumnName="idMaladie" />
+                <ScalarProperty Name="idTraitement" ColumnName="idTraitement" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="produit">
+            <EntityTypeMapping TypeName="BD_pt4_S4A_eq1Model.produit">
+              <MappingFragment StoreEntitySet="produit">
+                <ScalarProperty Name="imageProduit" ColumnName="imageProduit" />
+                <ScalarProperty Name="idOrdonnance" ColumnName="idOrdonnance" />
+                <ScalarProperty Name="prixVenteClient" ColumnName="prixVenteClient" />
+                <ScalarProperty Name="prixAchat" ColumnName="prixAchat" />
+                <ScalarProperty Name="quantiteStock" ColumnName="quantiteStock" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="nomProduit" ColumnName="nomProduit" />
+                <ScalarProperty Name="idProduit" ColumnName="idProduit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rendez_vous">
+            <EntityTypeMapping TypeName="BD_pt4_S4A_eq1Model.rendez_vous">
+              <MappingFragment StoreEntitySet="rendez_vous">
+                <ScalarProperty Name="raison" ColumnName="raison" />
+                <ScalarProperty Name="dateFin" ColumnName="dateFin" />
+                <ScalarProperty Name="dateDebut" ColumnName="dateDebut" />
+                <ScalarProperty Name="idClient" ColumnName="idClient" />
+                <ScalarProperty Name="idRDV" ColumnName="idRDV" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
